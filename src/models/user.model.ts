@@ -8,7 +8,7 @@ export class User {
     @Column({ length: 500 })
     name: string;
 
-    @Column("text")
+    @Column({type: "text", nullable: true})
     headImgUrl: string;
 
     @Column()
@@ -17,6 +17,6 @@ export class User {
     @Column()
     account: string;
 
-    @Column()
+    @Column({default: true})
     isDeleted: boolean;
 }
