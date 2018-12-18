@@ -1,10 +1,10 @@
 import { Post, Controller, Body } from "@nestjs/common";
 import { Response } from "src/common/response";
 import { UserService } from "src/service/user.service";
-import { Business } from './../common/business';
+import { Business } from '../../common/business';
 
 @Controller("user")
-export class UserController {
+export class LoginController {
     constructor(private readonly userService: UserService) {}
 
     @Post("login")
@@ -13,9 +13,9 @@ export class UserController {
         if (user) {
             return new Response().setData({
                 user: user,
-                token: Business.encryption({
+                token: Business.encrypt({
                     id: user.id,
-                    exp: Business.getNow()
+                    exp: Business.getNow() + 60 * 60 * 24
                 })
             });
         } else {

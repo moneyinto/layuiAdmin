@@ -1,6 +1,6 @@
 ## vue layui admin
 
-[前台UI Vue Layui](https://github.com/moneyinto/vue-layui) 
+[前台UI Vue Layui](https://github.com/moneyinto/vue-layui/tree/api) 
 
 ## Installation
 

@@ -3,8 +3,23 @@ import * as jwt from "jsonwebtoken";
 import * as moment from 'moment';
 
 export class Business {
-    static encryption(obj) {
+    static encrypt(obj) {
         return jwt.sign(obj, key);
+    }
+
+    static decrypt(token, callback) {
+        jwt.verify(token, key, (err, decoded) => {
+            callback(err, decoded);
+        });
+    }
+
+    static getCookie(name, cookies) {
+        let Cookies = {};
+        cookies && cookies.split(';').forEach((Cookie) => {
+            var parts = Cookie.split('=');
+            Cookies[parts[0].trim()] = (parts[1] || '').trim();
+        });
+        return Cookies[name];
     }
 
     static getNow() {
