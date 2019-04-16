@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Connection } from "typeorm";
 import { User } from "./../models/user.model";
+import { Permission } from "./../models/permission.model";
 
 @Injectable()
 export class UserService {
@@ -16,5 +17,14 @@ export class UserService {
         // const userRepository = this.connection.getRepository(User);
         // const user = await userRepository.findOne({ account: account });
         return user;
+    }
+
+    async getPower(user) {
+        const power = await this.connection
+            .createQueryBuilder()
+            .select()
+            .from(Permission, "permission")
+            .execute();
+        return power;
     }
 }

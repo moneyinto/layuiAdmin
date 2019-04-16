@@ -1,11 +1,14 @@
-import { Post, Controller, Body } from "@nestjs/common";
+import { Get, Post, Controller, Body } from "@nestjs/common";
+import { EntityManager } from 'typeorm';
 import { Response } from "src/common/response";
 import { UserService } from "src/service/user.service";
 import { Business } from '../../common/business';
+import PermissionData from '../../config/permissionData';
+import { Permission } from './../../models/permission.model';
 
 @Controller("user")
 export class LoginController {
-    constructor(private readonly userService: UserService) {}
+    constructor(private readonly userService: UserService, private manager: EntityManager) {}
 
     @Post("login")
     async login(@Body() loginInfo) {
@@ -21,5 +24,17 @@ export class LoginController {
         } else {
             return new Response().setSuccess(false).setMsg("账号或密码不正确！");
         }
+    }
+
+    @Get("initPermission")
+    async initPermission() {
+        for (let [index, item] of PermissionData.entries()) {
+            const permission = new Permission();
+            permission.name = item.name;
+            permission.type = item.type;
+            await this.manager.save(permission);
+        }
+
+        return new Response().setSuccess(true);
     }
 }
