@@ -5,6 +5,9 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column()
+    roleId: number;
+
     @Column({ length: 500 })
     name: string;
 
@@ -17,6 +20,12 @@ export class User {
     @Column()
     account: string;
 
-    @Column({default: true})
+    @Column()
+    createTime: string;
+
+    @Column({default: ''})
+    updateTime: string;
+
+    @Column({default: false})
     isDeleted: boolean;
 }

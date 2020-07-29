@@ -1,5 +1,6 @@
 export class Response {
     private code: number = 200;
+    private count: number = 0;
     private msg: string = '操作成功';
     private data: object | string | Array<any> = null;
     private success: boolean = true;
@@ -16,6 +17,11 @@ export class Response {
 
     public setData(data: object | string) {
         this.data = data;
+        return this;
+    }
+
+    public setCount(count: number) {
+        this.count = count;
         return this;
     }
 

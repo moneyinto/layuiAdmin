@@ -10,7 +10,4 @@ export class Role {
 
     @Column()
     parentId: number;
-
-    @Column({default: true})
-    isDeleted: boolean;
 }

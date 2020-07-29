@@ -1,6 +1,7 @@
 import key from "./../config/key";
 import * as jwt from "jsonwebtoken";
 import * as moment from 'moment';
+const crypto = require('crypto');
 
 export class Business {
     static encrypt(obj) {
@@ -24,5 +25,10 @@ export class Business {
 
     static getNow() {
         return moment().unix();
+    }
+
+    static md5(text) {
+        const md5 = crypto.createHash('md5');
+        return md5.update(text).digest('hex');
     }
 }

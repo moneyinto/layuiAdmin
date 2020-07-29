@@ -1,15 +1,16 @@
 import { Injectable } from "@nestjs/common";
-import { Connection } from "typeorm";
+import { Connection, EntityManager, Not } from "typeorm";
 import { User } from "./../models/user.model";
-import { Permission } from "./../models/permission.model";
+import * as moment from 'moment';
+import { Business } from "src/common/business";
 
 @Injectable()
 export class UserService {
-    constructor(private readonly connection: Connection) {}
+    constructor(private readonly connection: Connection, private manager: EntityManager) {}
     async login(account, password) {
         const user = await this.connection
             .createQueryBuilder()
-            .select("user.id, user.name, user.headImgUrl")
+            .select("user.id, user.name, user.headImgUrl, user.roleId")
             .from(User, "user")
             .where("user.account = :account", { account: account })
             .andWhere("user.password = MD5(:password)", { password: password })
@@ -19,12 +20,29 @@ export class UserService {
         return user;
     }
 
-    async getPower(user) {
-        const power = await this.connection
-            .createQueryBuilder()
-            .select()
-            .from(Permission, "permission")
-            .execute();
-        return power;
+    async verifyDuplicateAccount(account) {
+        const result = await this.manager.find(User, { account });
+        return result;
+    }
+
+    async addSysUser(user) {
+        const result = await this.manager.insert(User, {...user, password: Business.md5(user.password), createTime: moment().format('YYYY-MM-DD HH:mm:ss')});
+        return result;
+    }
+
+    async getSysUser(query) {
+        const result = this.manager.findAndCount(User, {
+            where: {
+                isDeleted: 0,
+                roleId: Not(0)
+            },
+            order: {
+                createTime: "DESC"
+            },
+            skip: (Number(query.page) - 1) * Number(query.limit),
+            take: Number(query.limit),
+            cache: true
+        });
+        return result;
     }
 }

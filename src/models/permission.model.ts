@@ -6,6 +6,9 @@ export class Permission extends BaseEntity {
     id: number;
 
     @Column({ length: 500 })
+    key: string;
+
+    @Column({ length: 500 })
     name: string;
 
     @Column()

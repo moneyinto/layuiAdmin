@@ -8,9 +8,6 @@ export class RolePermission {
     @Column()
     roleId: number;
 
-    @Column()
-    permissionId: number;
-
-    @Column({default: true})
-    isDeleted: boolean;
+    @Column("simple-array")
+    permissionIds: string[];
 }

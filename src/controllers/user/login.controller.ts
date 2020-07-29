@@ -6,7 +6,7 @@ import { Business } from '../../common/business';
 import PermissionData from '../../config/permissionData';
 import { Permission } from './../../models/permission.model';
 
-@Controller("user")
+@Controller("sys")
 export class LoginController {
     constructor(private readonly userService: UserService, private manager: EntityManager) {}
 
