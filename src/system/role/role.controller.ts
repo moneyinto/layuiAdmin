@@ -2,8 +2,9 @@ import { Post, Get, Controller, Body } from "@nestjs/common";
 import { Response } from "src/common/response";
 import { User } from '../decorator/user.decorator';
 import { RoleService } from "./role.service";
+import { ApiTags } from "@nestjs/swagger";
 
-
+@ApiTags("角色管理")
 @Controller("sys")
 export class RoleController {
     constructor(private readonly roleService: RoleService) {}

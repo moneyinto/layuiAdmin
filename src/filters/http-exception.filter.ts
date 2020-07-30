@@ -27,9 +27,7 @@ export class HttpExceptionFilter extends BaseExceptionFilter {
                 : HttpStatus.INTERNAL_SERVER_ERROR;
 
         const message =
-            exception.message ||
-            exception.message.message ||
-            exception.message.error ||
+            exception.message
             null;
         // this.logger.log(`【错误提示】:${JSON.stringify(message)}`);
         const errorResponse = {

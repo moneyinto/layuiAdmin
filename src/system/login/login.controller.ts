@@ -3,11 +3,12 @@ import { EntityManager } from 'typeorm';
 import { Response } from "src/common/response";
 import { Business } from '../../common/business';
 import { LoginService } from "./login.service";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags("后台登录")
 @Controller("sys")
 export class LoginController {
     constructor(private readonly loginService: LoginService, private manager: EntityManager) {}
-
     @Post("login")
     async login(@Body() loginInfo) {
         const user = await this.loginService.login(loginInfo.account, loginInfo.password);

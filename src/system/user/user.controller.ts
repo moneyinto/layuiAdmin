@@ -1,7 +1,9 @@
 import { Post, Get, Controller, Body, Query } from "@nestjs/common";
 import { Response } from "../..//common/response";
 import { UserService } from "./user.service";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags("用户管理")
 @Controller("sys")
 export class UserController {
     constructor(private readonly userService: UserService) {}

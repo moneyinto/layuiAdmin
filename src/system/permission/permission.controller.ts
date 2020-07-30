@@ -2,8 +2,9 @@ import { Post, Get, Controller, Body } from "@nestjs/common";
 import { Response } from "src/common/response";
 import { User } from '../decorator/user.decorator';
 import { PermissionService } from "./permission.service";
+import { ApiTags } from "@nestjs/swagger";
 
-
+@ApiTags("权限管理")
 @Controller("sys")
 export class PermissionController {
     constructor(private readonly permissionService: PermissionService) {}
@@ -27,6 +28,7 @@ export class PermissionController {
 
     @Get("getUserPermission")
     async getUserPermission(@User() user) {
+        console.log('xxxxxxx', user)
         let power = await this.permissionService.getUserPermission(user.id);
         return new Response().setSuccess(true).setData(power);
     }
