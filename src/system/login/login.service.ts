@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Connection, EntityManager, Not } from "typeorm";
-import { SysUser } from "../entities/sysUser.entitiy";
+import { SysUser } from "../entities/sysUser.entity";
 import * as moment from 'moment';
 
 @Injectable()

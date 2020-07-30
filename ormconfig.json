@@ -5,7 +5,7 @@
     "username": "root",
     "password": "root3306",
     "database": "layuiAdmin",
-    "entities": ["src/**/**.entitiy{.ts,.js}"],
+    "entities": ["src/**/**.entity{.ts,.js}"],
     "synchronize": true,
     "logging": true
 }

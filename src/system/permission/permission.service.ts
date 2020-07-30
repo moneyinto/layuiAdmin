@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { Connection, EntityManager } from "typeorm";
-import { SysPermission } from "../entities/sysPermission.entitiy";
-import { SysUser } from "../entities/sysUser.entitiy";
-import { SysRolePermission } from "../entities/sysRolePermission.entitiy";
+import { SysPermission } from "../entities/sysPermission.entity";
+import { SysUser } from "../entities/sysUser.entity";
+import { SysRolePermission } from "../entities/sysRolePermission.entity";
 
 @Injectable()
 export class PermissionService {
