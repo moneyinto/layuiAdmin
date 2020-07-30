@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware, MiddlewareFunction } from "@nestjs/common";
-import { Business } from '../common/business';
-import { Response } from "../common/response";
+import { Business } from '../../common/business';
+import { Response } from "../../common/response";
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {

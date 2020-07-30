@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { UserModule } from './user.module';
+import { SystemModule } from './system/system.module';
 
 @Module({
-    imports: [TypeOrmModule.forRoot(), UserModule],
+    imports: [TypeOrmModule.forRoot(), SystemModule],
     controllers: [],
     providers: []
 })

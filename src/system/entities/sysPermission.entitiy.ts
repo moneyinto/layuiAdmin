@@ -1,7 +1,7 @@
 import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Permission extends BaseEntity {
+export class SysPermission extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 

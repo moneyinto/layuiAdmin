@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Role {
+export class SysRolePermission {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ length: 500 })
-    name: string;
-
     @Column()
-    parentId: number;
+    roleId: number;
+
+    @Column("simple-array")
+    permissionIds: string[];
 }

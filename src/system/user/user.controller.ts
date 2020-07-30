@@ -1,7 +1,6 @@
 import { Post, Get, Controller, Body, Query } from "@nestjs/common";
 import { Response } from "../..//common/response";
-import { UserService } from "../../service/user.service";
-import { Business } from "../../common/business";
+import { UserService } from "./user.service";
 
 @Controller("sys")
 export class UserController {
