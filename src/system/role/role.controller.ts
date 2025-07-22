@@ -24,7 +24,7 @@ export class RoleController {
     }
 
     @Post("editRole")
-    async eidtRole(@User() user, @Body() data) {
+    async editRole(@User() user, @Body() data) {
         let result;
         result = await this.roleService.verifyDuplicateName(user.id, data.name);
         if (result.length > 0 && result[0].id != data.id) return new Response().setSuccess(false).setMsg('角色名称已存在');

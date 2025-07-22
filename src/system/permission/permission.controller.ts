@@ -28,7 +28,6 @@ export class PermissionController {
 
     @Get("getUserPermission")
     async getUserPermission(@User() user) {
-        console.log('xxxxxxx', user)
         let power = await this.permissionService.getUserPermission(user.id);
         return new Response().setSuccess(true).setData(power);
     }
